@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clipforge"
+version = "0.1.0"
+description = "Turn your OWN stream VODs into vertical clips with chat-hype moment detection: parse chat logs, find the spikes, cut 9:16 clips with ffmpeg, generate posting packs."
+readme = "README.md"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "Tahir Younas" }]
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+clipforge = "clipforge.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
