@@ -12,15 +12,9 @@ jobs:
         run: |
           set -eux
           unzip -o clipforge.zip
-          ls -la
-          ls -la clipforge || true
+          ls -la clipforge
           if [ -f clipforge/.github/workflows/ci.yml ]; then cp clipforge/.github/workflows/ci.yml ./ci.yml; fi
-          shopt -s dotglob nullglob
-          for item in clipforge/* clipforge/.[!.]*; do
-            base=$(basename "$item")
-            if [ "$base" = ".github" ]; then continue; fi
-            mv "$item" ./
-          done
+          rsync -a --exclude='.github' clipforge/ ./
           rm -rf clipforge clipforge.zip
           ls -la
           find . -maxdepth 3 -type f | sort
